@@ -3,6 +3,7 @@ let y = x * 2 + 1;
 print y;               # 21
 
 print "Hello, Nexa!";  # string
+print "Hello, Daniel!";  # string
 print 'A';             # char
 print '\n';            # newline char
 print x + 5;           # 15
