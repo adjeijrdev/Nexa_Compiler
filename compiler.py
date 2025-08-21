@@ -10,7 +10,7 @@ from typing import List, Optional, Dict
 from llvmlite import ir, binding as llvm
 
 # -----------------------------
-# 1) Lexer
+# 1) Lexer  [ AMINA ]
 # -----------------------------
 TOKEN_SPEC = [
     ("LET",      r"let\b"),
@@ -71,9 +71,9 @@ def lex(src: str) -> List[Token]:
         tokens.append(Token(kind, value, m.start()))
     return tokens
 
-# -----------------------------
-# 2) AST nodes
-# -----------------------------
+# --------------------------------------
+# 2) AST nodes  [ COURAGE ]
+# --------------------------------------
 class Stmt: ...
 class Expr: ...
 
@@ -112,9 +112,9 @@ class BinOp(Expr):
     left: Expr
     right: Expr
 
-# -----------------------------
-# 3) Parser (recursive descent)
-# -----------------------------
+# ------------------------------------------
+# 3) Parser (recursive descent)  [ JOHN]
+# ------------------------------------------
 class Parser:
     def __init__(self, tokens: List[Token]):
         self.toks = tokens
@@ -200,9 +200,9 @@ class Parser:
             return node
         raise SyntaxError(f"Bad factor at pos {tok.pos}")
 
-# -----------------------------
-# 4) Codegen to LLVM IR (llvmlite)
-# -----------------------------
+# ---------------------------------------------------------
+# 4) Codegen to LLVM IR (llvmlite)  [ KENNETH ]
+# ---------------------------------------------------------
 class CodeGen:
     def __init__(self):
         self.module = ir.Module(name="nexa")
@@ -302,7 +302,7 @@ class CodeGen:
         raise ValueError("Unknown expression")
 
 # -----------------------------
-# 5) JIT driver
+# 5) JIT driver    [ DANIEL]
 # -----------------------------
 llvm.initialize()
 llvm.initialize_native_target()
@@ -366,9 +366,9 @@ def run(source_code: str):
     cfunc = ctypes.CFUNCTYPE(ctypes.c_int)(main_ptr)
     return cfunc()
 
-# -----------------------------
-# 6) CLI (accept only .nx / .nexa)
-# -----------------------------
+# -------------------------------------------------
+# 6) CLI (accept only .nx / .nexa)  [ DANIEL ]
+# --------------------------------------------------
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nexa <sourcefile.nx | sourcefile.nexa>")

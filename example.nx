@@ -7,3 +7,9 @@ print "Hello, Daniel!";  # string
 print 'A';             # char
 print '\n';            # newline char
 print x + 5;           # 15
+
+let kofi = 5;
+let ama = 16;
+
+let kwame = kofi + ama;
+print kwame;
